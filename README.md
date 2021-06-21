@@ -16,7 +16,7 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
   <li>Delete Student - To Delete Student Record from Database </li>
 </h4>
 </ul>
-<h2><ul>3.)Issue Book - To Issue Book</ul>
+<ul><h2>3.)Issue Book - To Issue Book</ul>
 <ul>4.)Return Book - To Return Book </ul>
   
 </h2>
