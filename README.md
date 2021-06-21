@@ -3,7 +3,7 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
 
 <h1>Functions :</h1>
 <ul>
-  <h2>Book</h2>
+  <h2>1.)Book</h2>
   <h4>
     <li>Add Books - To Add Book to Database </li>
     <li>Update Books - To Update information of Books </li>
@@ -12,7 +12,7 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
 </ul>
 <ul>
 
-<h2>Student</h2>
+<h2>2.)Student</h2>
 
 <h4>
   <li>Add Student - To Add new Student Record to Database </li>
@@ -22,9 +22,9 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
 </ul>
 
 <h2>
-  <ul>Issue Book - To Issue Book</ul>
+  <ul>3.)Issue Book - To Issue Book</ul>
 
-  <ul>Return Book - To Return Book </ul>
+  <ul>4.)Return Book - To Return Book </ul>
   
 </h2>
 
