@@ -1,0 +1,39 @@
+
+.inputbox_style{
+    
+}
+.label_style{
+background-color: #28282B; 
+height: 35px;  
+width: 190px; 
+padding : 5px 10px 10px 10px;"
+border-radius: 4px;
+resize: vertical;
+}
+span.label_style{
+     display: inline-block;
+}
+.div_style{
+    padding :10px;
+}
+
+.textbox_style{
+height: 35px;  
+width: 20%; 
+font-size: 14px;
+border: 2px solid  #28282B;
+border-radius: 4px;
+resize: vertical;
+padding-top :1px;
+padding-left : 10px;
+padding-bottom: 1px;
+padding-right: 10px;
+
+}
+
+table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 

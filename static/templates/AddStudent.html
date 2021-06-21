@@ -1,0 +1,45 @@
+{% extends 'Index.html' %}
+{%block title%} Add Student {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+<!--             Main From           -->
+<form >{% csrf_token %}
+<div class = "text-white" align= "center">
+<div class ="div_style">
+  <h5><span class="label_style">Library ID :</span> <input type ="text" name = "library_id" id = "library_id" class ="textbox_style">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Name :</span> <input type ="text" name = "name" id = "name" class ="textbox_style">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Phone Number:</span> <input type="text"  name = "phone_no" id = "phone_no" class ="textbox_style" value = "{{students.phone_no}}">
+</div></h5>
+<div class ="div_style">
+  <h5><span class="label_style">Email ID :</span> <input type="email" name = "email_id" id = "email_id" class ="textbox_style">
+</div></h5>
+<div class ="div_style">
+  <h5><span class="label_style">Course :</span> <input type ="text" name = "course" id = "course" class ="textbox_style">
+</div></h5>
+</div>
+<div class ="div_style" align = "center">
+<input type = 'button' value = 'Submit' class="btn btn-primary" style = "width: 200px; padding-right : 10px;" id = "submit_btn"></a>
+<input type = 'button' value = 'Reset'  class="btn btn-secondary" style = "width: 200px;" id = "reset_btn"></a>
+<a href = "/" ><input type = 'button' value = 'Return Home'  class="btn btn-primary" style = "width: 200px;"></a>
+</div>
+</from>
+<!--                     External js and ajax  AddStudent.js              -->
+<script type="text/javascript" src="{% static 'templates/Js/AddStudent.js' %}"></script>
+
+ {%endblock body%}

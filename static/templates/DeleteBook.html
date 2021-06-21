@@ -1,0 +1,67 @@
+{% extends 'Index.html' %}
+{%block title%} Delete Book {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+
+<form > {% csrf_token %}
+<div class = "text-white" align= "center">
+<div class ="div_style">
+  <h5><span class="label_style">Book ID :</span> <input type ="text" name = "book_id" id = "book_id" class ="textbox_style"  value = {{books.book_id}} >  
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Book Title :</span> <input type ="text" name = "book_title" id = "book_title" class ="textbox_style" value = {{books.title}} > 
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Author Name :</span> <input type ="text" name = "author_name" id = "author_name" class ="textbox_style" value = {{books.author}} > 
+</div></h5>
+<div class ="div_style">
+  <h5><span class="label_style">Category/Genre :</span> <input type ="text" name = "genre" id = "genre" class ="textbox_style" value = {{books.genre}} > 
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Book Status :</span> <input type ="text" name = "status" id = "status" class ="textbox_style" value = {{books.status}} > 
+</div></h5>
+</div>
+<div class ="div_style" align = "center">
+<input type = 'button' value = 'Delete' class="btn btn-danger" style = "width: 200px; padding-right : 10px;" id = "delete_btn">
+<a href="/viewbook/"><input type = 'button' value = 'Cancel'  class="btn btn-primary" style = "width: 200px;">
+</div>
+</from>
+<!--                      ajax and js code             -->
+<script type="text/javascript">
+  
+$('#delete_btn').click(function(){
+
+//ajax DELETE Code 
+var data  = { };
+var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+
+$.ajax({
+    type: "DELETE",
+    url: "/books/{{books.id}}/",
+    data : data,
+    headers:{"X-CSRFToken": $crf_token},
+    success: function(response){
+      alert("Book Deleted successfully");
+      window.location = "/viewbook/";
+    },
+    error: function(){
+      alert("error while DELETE");
+    }
+});
+
+});
+
+</script>
+ {%endblock body%}

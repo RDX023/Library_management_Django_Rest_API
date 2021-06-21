@@ -1,0 +1,76 @@
+{% extends 'Index.html' %}
+{%block title%} ADD BOOK {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+
+<form >{% csrf_token %}
+<div class = "text-white" align= "center">
+<div class ="div_style">
+  <h5><span class="label_style">Library ID :</span> <input type ="text" name = "library_id" id = "library_id" class ="textbox_style" value = "{{students.library_id }}">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Name :</span> <input type ="text" name = "name" id = "name" class ="textbox_style" value = "{{students.name}}">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Phone Number:</span> <input type="text"  name = "phone_no" id = "phone_no" class ="textbox_style" value = "{{students.phone_no}}">
+</div></h5>
+<div class ="div_style">
+  <h5><span class="label_style">Email ID :</span> <input type="email"  name = "email_id" id = "email_id" class ="textbox_style" value = "{{students.email_id}}"> 
+</div></h5>
+<div class ="div_style">
+  <h5><span class="label_style">Course :</span> <input type ="text" name = "course" id = "course" class ="textbox_style" value = "{{students.course}}">
+</div></h5>
+</div>
+<div class ="div_style" align = "center">
+<input type = 'button' value = 'Update' class="btn btn-primary" style = "width: 200px; padding-right : 10px;" id = "update_btn" value = {{students.}}>
+<<input type = 'button' value = 'Home'  class="btn btn-primary" style = "width: 200px;">
+</div>
+</from>
+<!--                      ajax and js code             -->
+<script type="text/javascript">
+  
+  
+$('#update_btn').click(function(){
+ var library_id = $('#library_id').val();
+
+var name = $('#name').val();
+
+var phone_no = $('#phone_no').val();
+
+var email_id = $('#email_id').val();
+
+var course = $('#course').val();
+
+var data  = { "library_id" :  library_id ,"name" : name ,"phone_no" : phone_no ,"email_id" : email_id,"course" : course};
+var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+$.ajax({
+    type: "PUT",
+    url: "/students/{{students.id}}/",
+    data : data,
+    headers:{"X-CSRFToken": $crf_token},
+    success: function(response){
+      alert("Book Updated successfully");
+      window.location = "/studentdetails/";
+    },
+    error: function(){
+      alert("error while PUT");
+    }
+});
+});
+
+</script>
+
+
+ {%endblock body%}

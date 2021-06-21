@@ -1,0 +1,85 @@
+{% extends 'Index.html' %}
+{%block title%} Return Book {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+
+<form >{% csrf_token %}
+<div class = "text-white" align= "center">
+<div class ="div_style">
+  <h5><span class="label_style">Student ID :</span> <input type ="text" name = "issued_to" id = "issued_to" class ="textbox_style"  value = "{{issued_books.issued_to}}" readonly>  
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Book ID :</span> <input type ="text" name = "book_id" id = "book_id" class ="textbox_style"  value = "{{issued_books.book_id}}" readonly>  
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Book Title :</span> <input type ="text" name = "book_title" id = "book_title" class ="textbox_style" value = "{{issued_books.title}}" readonly> 
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Issue Date :</span> <input type ="text" name = "issue_date" id = "issue_date" class ="textbox_style" value = "{{issued_books.issue_date}} " readonly> 
+</div></h5>
+<div class ="div_style">
+  <span class="label_style"><h5>Return Date :</h5></span> <input type ="text" name = "return_date" id = "return_date" class ="textbox_style" value = "{{issued_books.return_date}} " readonly>
+</div>
+</div>
+<div class ="div_style" align = "center">
+<input type = 'button' value = 'Return Book' class="btn btn-primary" style = "width: 200px; padding-right : 10px;" id = "return_btn">
+<a href = "/" ><input type = 'button' value = 'Home'  class="btn btn-primary" style = "width: 200px;">
+</div>
+</from>
+<!--                      ajax and js code             -->
+<script type="text/javascript">
+  
+  
+$('#return_btn').click(function(){
+
+  var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+
+  var status = "Available";
+
+  var book_id = $("#book_id").val()
+
+
+book_data = {'book_id':book_id,'status':status}
+  $.ajax({
+    type: "POST",
+    url: "/returnbook/{{issued_books.id}}/",
+    data : book_data,
+    headers:{"X-CSRFToken": $crf_token},
+        error: function(){
+      alert("error while POST");
+        }
+    });
+
+var data  = { };
+
+
+$.ajax({
+    type: "DELETE",
+    url: "/API/issuebook/{{issued_books.id}}/",
+    data : data,
+    headers:{"X-CSRFToken": $crf_token},
+    success: function(response){
+      alert("Book status Updated  and Returned successfully");
+      window.location = "/issuedbook/";
+    },
+    error: function(){
+      alert("error while DELETE");
+    }
+});
+});
+
+</script>
+
+ {%endblock body%}

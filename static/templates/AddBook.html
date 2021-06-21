@@ -1,0 +1,57 @@
+{% extends 'Index.html' %}
+{%block title%} ADD BOOK {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+<link rel="stylesheet" href="{% static 'js/main.js' %}">
+
+
+{%block head%}
+<!--            External AddBook.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+
+{%endblock head%}
+{%block body%}
+
+<!--                      Main Form            -->
+<form >{% csrf_token %}
+<div class = "text-white" align= "center">
+<div class ="div_style">
+  <h5><span class="label_style">Book ID :</span> <input type ="text" name = "book_id" id = "book_id" class ="textbox_style">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Book Title :</span> <input type ="text" name = "book_title" id = "book_title" class ="textbox_style">
+</div>
+<div class ="div_style">
+  <h5><span class="label_style">Author Name :</span> <input type ="text" name = "author_name" id = "author_name" class ="textbox_style">
+</div></h5>
+<div class ="div_style">
+  <span class="label_style"><h5>Category/Genre :</h5></span>  <select class = "textbox_style" id = "genre" name = "genre">
+      <option>Computers & Technology</option>
+      <option>Comic Books & Graphic Novels</option>
+      <option>Education & Reference</option>
+      <option>Cookbooks</option>
+      <option>History</option>
+      <option>Literature & Fiction</option>
+      <option>Others</option>
+    </select>
+</div>
+<div class ="div_style">
+  <span class="label_style"><h5>Book Status :</h5></span>  <input type = "tel" value = "Available" class = "textbox_style" id = "status" name = "status" readonly>
+</div>
+</div>
+<div class ="div_style" align = "center">
+<input type = 'button' value = 'Submit' class="btn btn-primary" style = "width: 200px; padding-right : 10px;" id = "submit_btn"></a>
+<input type = 'button' value = 'Reset'  class="btn btn-secondary" style = "width: 200px;" id = "reset_btn"></a>
+<a href = "/" ><input type = 'button' value = 'Return Home'  class="btn btn-primary" style = "width: 200px;"></a>
+</div>
+</from>
+<!--                     External js and ajax  AddBook.js              -->
+<script type="text/javascript" src="{% static 'templates/Js/AddBook.js' %}"></script>
+
+ {%endblock body%}
+

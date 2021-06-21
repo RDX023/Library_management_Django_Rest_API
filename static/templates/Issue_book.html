@@ -1,0 +1,123 @@
+{% extends 'Index.html' %}
+{%block title%} Issue Book {%endblock title%}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+
+<h1 class="text-white">{{books.id}}</h1>
+<form>{% csrf_token %}
+  <div class="text-white" align="center">
+    <div class="div_style">
+      <span class="label_style">
+        <h5>Student ID :</h5>
+      </span> <select class="textbox_style" id="student_id" name="student_id">
+        <option>Select</option>
+        {% for item in students %}
+        <option>{{item.library_id}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="div_style">
+      <h5><span class="label_style">Book ID :</span> <input type="text" name="book_id" id="book_id"
+          class="textbox_style" value="{{books.book_id}}" readonly>
+    </div>
+    <div class="div_style">
+      <h5><span class="label_style">Book Title :</span> <input type="text" name="book_title" id="book_title"
+          class="textbox_style" value="{{books.title}}" readonly>
+    </div>
+    <div class="div_style">
+      <h5><span class="label_style">Author Name :</span> <input type="text" name="author_name" id="author_name"
+          class="textbox_style" value="{{books.author}} " readonly>
+    </div>
+    </h5>
+    <div class="div_style">
+      <span class="label_style">
+        <h5>Category/Genre :</h5>
+      </span> <input type="text" name="genre" id="genre" class="textbox_style" value="{{books.genre}} " readonly>
+    </div>
+    <div class="div_style">
+      <span class="label_style">
+        <h5>Return Date :</h5>
+      </span> <input type="date" name="return_date" id="return_date" class="textbox_style">
+    </div>
+  </div>
+  <div class="div_style" align="center">
+    <input type='button' value='Issue Book' class="btn btn-primary" style="width: 200px; padding-right : 10px;"
+      id="update_btn">
+    <a href="/"><input type='button' value='Home' class="btn btn-primary" style="width: 200px;">
+  </div>
+  </from>
+
+<!--                      ajax and js code             -->
+<script type="text/javascript">
+  
+  
+    $('#update_btn').click(function () {
+      var book_id = $("#book_id").val()
+     
+      var title = $("#book_title").val()
+      
+      var author = $("#author_name").val()
+     
+      var genre = $("#genre").val()
+      
+
+      var student_id = $('#student_id option:selected').text();
+      
+
+      var issue_fullDate = new Date()
+              var issue_day = issue_fullDate.getDate();
+              var issue_month = issue_fullDate.getMonth() + 1;
+              var issue_year = issue_fullDate.getFullYear();
+              var issue_date = issue_day+"-"+ issue_month+"-"+issue_year
+  
+
+                var return_fullDate = new Date($('#return_date').val());
+              var return_day = return_fullDate.getDate();
+              var return_month = return_fullDate.getMonth() + 1;
+              var return_year = return_fullDate.getFullYear();
+      var return_date = return_day+"-"+ return_month+"-"+return_year ;
+      
+
+      //ajax PUT Code 
+      var data = { "book_id": book_id, "title": title, "author": author, "genre": genre, "status": "Issued", };
+      var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+      
+      $.ajax({
+        type: "PUT",
+        url: "/books/{{books.id}}/",
+        data: data,
+        headers: { "X-CSRFToken": $crf_token },
+      });
+      //========================issue_book details or  book_issued model data
+      data2 = { "book_id": book_id, "title": title, "issued_to": student_id, "issue_date": issue_date, "return_date": return_date, }
+      
+      $.ajax({
+        type: "POST",
+        url: "/API/issuebook/",
+        data: data2,
+        headers: { "X-CSRFToken": $crf_token },
+        success: function (response) {
+          alert("Book Issued successfully");
+          window.location = "/availablebook/";
+        },
+        error: function () {
+          alert("error while POST");
+        }
+      });
+
+    });
+</script>
+
+  {%endblock body%}

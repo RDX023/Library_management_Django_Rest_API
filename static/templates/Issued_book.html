@@ -1,0 +1,47 @@
+{% extends 'Index.html' %}
+{%block title%} Issued Book {%endblock title%}
+{% load static %} 
+
+{%block head%}
+
+<!--            External main.Css              -->
+<link rel="stylesheet" href="{% static 'templates/Css/main.css' %}">
+
+{%endblock head%}
+{%block body%}
+
+<div>
+<div class = "px-3">
+<table  class="table table-striped table-dark">
+  <thead>
+    <tr align = "center">
+    <th scope="col">#</th>
+      <th scope="col">student ID</th>
+      <th scope="col">Book Id </th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Issued to</th>\
+      <th scope="col">Issue Date</th>
+
+      <th scope = "col"  > Options </th>
+    </tr>
+      </thead>
+      <tbody>
+     {% for item in issued_books %}
+    <tr align = "center"> 
+          <td class="counterCell"></td>
+        <td>{{ item.issued_to }}</td>
+         <td>{{ item.book_id }}</td>
+         <td>{{ item.title  }}</td>
+         <td>{{ item.issue_date }}</td>
+         <td>{{ item.return_date }}</td>
+         <td align = "center"><a href = "/returnbook/{{item.id}}/"><input type = 'button' value = 'Return Book' class="btn btn-success" style = "width: 120px; padding-right : 10px; margin-right :5px" id = "issue_btn">
+    </tr>
+       {% endfor %}
+</tbody>
+  </table>
+    </div>
+</div>
+<div align = "center">
+<a href = "/"><button type="button" class="btn btn-secondary">Return Home</button>
+</div>
+{%endblock body%}

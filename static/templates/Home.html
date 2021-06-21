@@ -1,0 +1,19 @@
+{% extends 'Index.html' %}
+{%block title%} Home {%endblock title%}
+{%block head%}
+<style>
+.div_style {
+  padding: 20px;
+}
+</style>
+{%endblock head%}
+{%block body%} 
+<div align = "center" class = "div_style">
+    <div class = "div_style"><a href = "/viewbook/"><input type = 'button' value = 'View Book' class="btn btn-primary" style = "width: 200px;"></div>
+    <div class = "div_style"><a href = "/addbook/"><input type = 'button' value = 'Add Book'  class="btn btn-primary" style = "width: 200px;"></div>
+    <div class = "div_style"><a href = "/studentdetails/"><input type = 'button' value = 'Student Details'  class="btn btn-primary" style = "width: 200px;"></div>
+    <div class = "div_style"><a href = "/availablebook/"><input type = 'button' value = 'Issue Book'  class="btn btn-primary" style = "width: 200px;"></div>
+    <div class = "div_style"><a href = "/issuedbook/"><input type = 'button' value = 'Return Book'  class="btn btn-primary" style = "width: 200px;"></div>
+</div>
+
+ {%endblock body%}
