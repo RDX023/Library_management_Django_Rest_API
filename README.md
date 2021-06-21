@@ -29,3 +29,9 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
 </h2>
 
 <h4>Note - I used deafult Database which is Sqlite3 <h4>
+
+  <h1> Requirements : </h1>
+  <h1>Requirements:</h1>
+<u>Python  == 3.9.1 </u>
+<u>djangorestframework==3.12.4</u>
+<u>djongo==1.3.4</u>
