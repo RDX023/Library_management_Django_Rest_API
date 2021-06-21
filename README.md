@@ -1,7 +1,7 @@
 # Library_management_Django_Rest_API
 Simple Library management System  using Django, Rest API, Html, Css and JavaScript
 
-<h1>Functions :
+<h1>Functions :</h1>
   <h2><ul>Book </h2>
     
   <h3><li>Add Books - To Add Book to Database </li>
