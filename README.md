@@ -6,7 +6,7 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
     
   <h4><li>Add Books - To Add Book to Database </li>
   <li>Update Books - To Update information of Books </li>
-    <li>Delete Books - To Delete Book from Database  </li></h3>
+    <li>Delete Books - To Delete Book from Database  </li></h4>
     </ul>
 
     <h2><ul>Student</h2>
