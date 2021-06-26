@@ -24,4 +24,4 @@ Simple Library management System  using Django, Rest API, Html, Css and JavaScri
   <h1>Requirements:</h1>
 <h3><li>Python  == 3.9.1 </li>
 <li>djangorestframework==3.12.4</li>
-  <li>djongo==1.3.4</li> </h3>
+  <li>Django==3.2.4</li> </h3>
